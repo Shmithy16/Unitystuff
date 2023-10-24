@@ -19,10 +19,10 @@ public class GameController : MonoBehaviour
         startPos = transform.position;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) //this checks if the player touches anything with the "obstacle" tag 
+    private void OnCollisionEnter2D(Collision2D collision) //this checks if the player touches anything with the "obstacle" tag 
                                                         //the video uses it for a spike but i apply it to box colliders that o0verlayed on the ground so you die if you touch the ground
     {
-        if (collision.CompareTag("Obstacle"))
+        if (collision.gameObject.tag == "Obstacle")
         {
             Die();
         }
