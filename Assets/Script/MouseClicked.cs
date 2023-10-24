@@ -9,7 +9,7 @@ using UnityEngine.InputSystem;
 public class MouseClicked : MonoBehaviour
 {
     public GameObject spawnObject;
-    public int counter = 5;
+    public int counter = 6;
 
  
     void Update()
@@ -24,5 +24,13 @@ public class MouseClicked : MonoBehaviour
             }
         }
     }
+
+    // public void OnTriggerEnter2D(Collider2D collision) {
+    //     if (collision.CompareTag ("Chest"))
+    //     {
+    //         counter += 6;
+    //     }
+    
+    // }
 }
 

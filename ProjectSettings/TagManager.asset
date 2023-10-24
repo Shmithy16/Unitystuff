@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Obstacle
   - StartScreen
-  - gamcom
+  - Chest
   layers:
   - Default
   - TransparentFX
