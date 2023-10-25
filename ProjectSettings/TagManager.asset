@@ -8,6 +8,7 @@ TagManager:
   - StartScreen
   - Chest
   - AudioManager
+  - End
   layers:
   - Default
   - TransparentFX

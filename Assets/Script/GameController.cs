@@ -10,6 +10,8 @@ public class GameController : MonoBehaviour
     Vector2 startPos;
     Rigidbody2D playerRb;
 
+    public Scene_Manager sceneManager;
+
     private void Awake()
     {
        playerRb = GetComponent<Rigidbody2D>(); 
@@ -28,7 +30,21 @@ public class GameController : MonoBehaviour
             Die();
         }
 
+        if (collision.gameObject.tag == "End")
+        {
+            Debug.Log("Test");
+            sceneManager.EndGame();
+        }
+
     }
+
+    // public void OnTriggerEnter2D(Collider2D collision) {
+    //     if (collision.CompareTag ("End"))
+    //     {
+    //        sceneManager.EndGame();
+    //     }
+    
+    // }
 
     void Die() // this function is what kills the player
     {

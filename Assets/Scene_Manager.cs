@@ -4,15 +4,13 @@ using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class scene_manager : MonoBehaviour
+public class Scene_Manager : MonoBehaviour
 {
     [SerializeField]
-    private string gameSceneName = "SampleScene";
-
-   
-    public void StartGame()
+    private string sceneEnd = "EndScene";
+    
+        public void EndGame()
     {
-        SceneManager.LoadScene(gameSceneName);
+        SceneManager.LoadScene(sceneEnd);
     }
-      
 }

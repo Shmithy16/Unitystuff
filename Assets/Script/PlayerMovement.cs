@@ -12,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Transform groundCheck;
     public LayerMask gridLayer;
+    public SpriteRenderer sprite;
+
+
 
     public MouseClicked mouseClicked;
     private AudioPlayer audioPlayer;
@@ -31,13 +34,13 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y); //our movement speed is the direction we are holding times the speed
 
-        if (!isFaceingRight && horizontal > 0f) //if we are facing left and we are moving left then flip the player 
+        if (horizontal > 0f) //if we are facing left and we are moving left then flip the player 
         { 
-            Flip();
+            sprite.flipX = false;
         }
-        else if (isFaceingRight && horizontal < 0f)
+        else if (horizontal < 0f)
         {
-            Flip();
+            sprite.flipX = true;
         }
     }
 
@@ -59,13 +62,13 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, gridLayer);
     }
 
-    private void Flip()//this flips the character
-    {
-        isFaceingRight = !isFaceingRight;
-        Vector3 localScale = transform.localScale;
-        localScale.x *= -1f;
-        transform.localScale = localScale;
-    }
+    // private void Flip()//this flips the character
+    // {
+    //     isFaceingRight = !isFaceingRight;
+    //     Vector3 localScale = transform.localScale;
+    //     localScale.x *= -1f;
+    //     transform.localScale = localScale;
+    // }
 
     public void Move(InputAction.CallbackContext context)
     {
