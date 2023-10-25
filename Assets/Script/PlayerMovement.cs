@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public LayerMask gridLayer;
     public SpriteRenderer sprite;
+    public Animator animator;
 
 
 
@@ -22,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
     private float horizontal; //Sets the values for speed, jumping power and if the player is facing right
     private float speed = 8f;
     private float jumpingPower = 16f;
-    private bool isFaceingRight = true;
 
     void Start()
     {
@@ -33,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y); //our movement speed is the direction we are holding times the speed
+
+        animator.SetFloat("Speed", Mathf.Abs(horizontal)); // i learned how to do the animation from this video https://youtu.be/hkaysu1Z-N8
 
         if (horizontal > 0f) //if we are facing left and we are moving left then flip the player 
         { 
@@ -62,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, gridLayer);
     }
 
-    // private void Flip()//this flips the character
+    // private void Flip()//this flips the character    this use to be the way i fliped the character but i found a better way thanks to ruby
     // {
     //     isFaceingRight = !isFaceingRight;
     //     Vector3 localScale = transform.localScale;
@@ -75,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
         horizontal = context.ReadValue<Vector2>().x;
     }
 
-    public void OnTriggerEnter2D(Collider2D collision) {
+    public void OnTriggerEnter2D(Collider2D collision) { //when you touch the chest you gain 6 blocks and it destroys the chest
         if (collision.CompareTag ("Chest"))
         {
            mouseClicked.addToCounter();

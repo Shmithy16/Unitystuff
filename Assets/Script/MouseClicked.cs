@@ -29,12 +29,12 @@ public class MouseClicked : MonoBehaviour
             }
         }
     }
-    public void updateText()
+    public void updateText() //this updates the text for how many blocks you have
     {
         blockText.text = "Blocks: " + counter;
     }
 
-    public void addToCounter()
+    public void addToCounter() //this increses the counter
     {
         counter += 6;
         updateText();

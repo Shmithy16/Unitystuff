@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class Scene_Manager : MonoBehaviour
 {
-    [SerializeField]
-    private string sceneEnd = "EndScene";
+    [SerializeField] 
+    private string sceneEnd = "EndScene"; //this is what switches to the end screen
     
         public void EndGame()
     {

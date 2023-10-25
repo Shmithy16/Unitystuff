@@ -22,29 +22,22 @@ public class GameController : MonoBehaviour
         startPos = transform.position;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) //this checks if the player touches anything with the "obstacle" tag 
-                                                        //the video uses it for a spike but i apply it to box colliders that o0verlayed on the ground so you die if you touch the ground
-    {
-        if (collision.gameObject.tag == "Obstacle")
+    private void OnCollisionEnter2D(Collision2D collision) {
+
+        if (collision.gameObject.tag == "Obstacle")//this checks if the player touches anything with the "obstacle" tag 
+                                                        //the video uses it for a spike but i apply it to all of the tiles except for a few near the middle as it was quite hard since just 
+                                                        //touching the walls would kill you
         {
             Die();
         }
 
-        if (collision.gameObject.tag == "End")
+        if (collision.gameObject.tag == "End") //this checks if the player has reached the end and will switch to the end scene
         {
-            Debug.Log("Test");
             sceneManager.EndGame();
         }
 
     }
 
-    // public void OnTriggerEnter2D(Collider2D collision) {
-    //     if (collision.CompareTag ("End"))
-    //     {
-    //        sceneManager.EndGame();
-    //     }
-    
-    // }
 
     void Die() // this function is what kills the player
     {
@@ -62,9 +55,9 @@ public class GameController : MonoBehaviour
         playerRb.simulated = true;
         
     }
-    public void Update()
+    public void Update() 
     {
-        if(Input.GetKeyDown(KeyCode.R))
+        if(Input.GetKeyDown(KeyCode.R)) //this is what resets the scene when you hit the key R
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
