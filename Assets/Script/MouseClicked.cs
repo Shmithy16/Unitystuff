@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using TMPro;
 
 //This code was aquired in this video https://youtube.com/shorts/x03mPWj3gFg?si=5IzPnDwf4jsr2os_
 
@@ -10,6 +12,8 @@ public class MouseClicked : MonoBehaviour
 {
     public GameObject spawnObject;
     public int counter = 6;
+
+    public TMP_Text blockText;
 
  
     void Update()
@@ -21,16 +25,19 @@ public class MouseClicked : MonoBehaviour
             if(counter > 0){
                 Instantiate(spawnObject, pos + offset, Quaternion.identity);// then spawns this object at that position
                 counter -= 1;
+                updateText();
             }
         }
     }
+    public void updateText()
+    {
+        blockText.text = "Blocks: " + counter;
+    }
 
-    // public void OnTriggerEnter2D(Collider2D collision) {
-    //     if (collision.CompareTag ("Chest"))
-    //     {
-    //         counter += 6;
-    //     }
-    
-    // }
+    public void addToCounter()
+    {
+        counter += 6;
+        updateText();
+    }
 }
 

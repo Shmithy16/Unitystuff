@@ -13,10 +13,18 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public LayerMask gridLayer;
 
+    public MouseClicked mouseClicked;
+    private AudioPlayer audioPlayer;
+
     private float horizontal; //Sets the values for speed, jumping power and if the player is facing right
     private float speed = 8f;
     private float jumpingPower = 16f;
     private bool isFaceingRight = true;
+
+    void Start()
+    {
+        audioPlayer = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioPlayer>();
+    }
 
 
     void Update()
@@ -38,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
         if (context.performed && IsGrounded()) //if we are on the ground then we can jump
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            audioPlayer.playSound("Jump");
         }
 
         if (context.canceled && rb.velocity.y >0f) //this will make it so the longer you hold jump the higher you jump
@@ -61,6 +70,15 @@ public class PlayerMovement : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         horizontal = context.ReadValue<Vector2>().x;
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.CompareTag ("Chest"))
+        {
+           mouseClicked.addToCounter();
+           Destroy(collision.gameObject);
+        }
+    
     }
 }
 

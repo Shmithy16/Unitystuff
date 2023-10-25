@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //This code was aquired in this video https://youtu.be/odStG_LfPMQ?si=tjy2Jln5pc3XCgUW
 
@@ -44,6 +45,13 @@ public class GameController : MonoBehaviour
         transform.localScale = new Vector3(1,1,1); //make player visible
         playerRb.simulated = true;
         
+    }
+    public void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
 }
